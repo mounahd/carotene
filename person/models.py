@@ -24,7 +24,6 @@ PARTICIPANT_LEVEL_CHOICES = (('beginner',  _('Beginner')),
                              ('intermediate', _('Intermediate')),
                              ('indifferent', _('Indifferent')))
 
-
 class Person(models.Model):
 
     first_name = models.CharField(u'Firstname', max_length=30)
@@ -41,6 +40,11 @@ class Person(models.Model):
                                     default=None,
                                     blank=True,
                                     null=True,
+                                related_name="%(app_label)s_%(class)s_related")
+    language = models.ManyToManyField('Language',
+                                        default=None,
+                                        blank=True,
+                                        null=True,
                                 related_name="%(app_label)s_%(class)s_related")
 
     class Meta:
@@ -73,7 +77,10 @@ class Participant(Person):
 class Language(models.Model):
 
     name = models.CharField(u'Language Name', max_length=64)
-    iso = models.CharField(u'ISO', max_length=3)
+    iso = models.CharField(u'ISO', max_length=3, primary_key=True)
+
+    def __str__(self):
+        return u"%s" % (self.name)
 
 class Hobbie(models.Model):
 
