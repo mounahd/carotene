@@ -1,7 +1,5 @@
-<!DOCTYPE html>
-<html>
-    <head></head>
-    <body>
+{% extends "base.html" %}
+{% block content %}
         {% if participants_list %}
         <table>
             <tr>
@@ -37,5 +35,4 @@
             {% endfor %}
         </table>
         {% endif %}
-    </body>
-</html>
+{% endblock %}
