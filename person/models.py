@@ -50,7 +50,6 @@ class Mentor(Person):
     def __str__(self):
         return u"%s %s" % (self.first_name, self.last_name)
 
-
 class Participant(Person):
     python_practice_since = models.CharField(u'Python practice since',
                                              choices=PYTHON_PRACTICE_CHOICES,
@@ -64,11 +63,17 @@ class Participant(Person):
     Mentor = models.ForeignKey('Mentor', default=None, blank=True,
                                null=True, related_name="participants")
 
+    hobbie = models.ManyToManyField('Hobbie', default=None, blank=True,
+                               null=True, related_name="participants")
+
     def __str__(self):
         return u"%s %s" % (self.first_name, self.last_name)
 
 
-class language(models.Model):
+class Language(models.Model):
 
     name = models.CharField(u'Language Name', max_length=64)
     iso = models.CharField(u'ISO', max_length=3)
+
+class Hobbie(models.Model):
+    name = models.CharField(u'Hobbie Name', max_length=128)
