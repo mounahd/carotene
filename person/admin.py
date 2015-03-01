@@ -1,6 +1,7 @@
 from django.contrib import admin
-from person.models import Participant, Mentor
+from person.models import Participant, Mentor, Hobbie
 
+# Register your models here.
 admin.site.register(Participant)
 admin.site.register(Mentor)
-# Register your models here.
+admin.site.register(Hobbie)

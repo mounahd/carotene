@@ -37,10 +37,14 @@ class Person(models.Model):
                                      max_length=10)
     gender = models.CharField(u'Gender', choices=GENDER_CHOICES,
                               max_length=5)
+    hobbie = models.ManyToManyField('Hobbie',
+                                    default=None,
+                                    blank=True,
+                                    null=True,
+                                related_name="%(app_label)s_%(class)s_related")
 
     class Meta:
         abstract = True
-
 
 class Mentor(Person):
     participant_level = models.CharField(u'participant level',
@@ -63,12 +67,8 @@ class Participant(Person):
     Mentor = models.ForeignKey('Mentor', default=None, blank=True,
                                null=True, related_name="participants")
 
-    hobbie = models.ManyToManyField('Hobbie', default=None, blank=True,
-                               null=True, related_name="participants")
-
     def __str__(self):
         return u"%s %s" % (self.first_name, self.last_name)
-
 
 class Language(models.Model):
 
@@ -76,4 +76,8 @@ class Language(models.Model):
     iso = models.CharField(u'ISO', max_length=3)
 
 class Hobbie(models.Model):
+
     name = models.CharField(u'Hobbie Name', max_length=128)
+
+    def __str__(self):
+        return u"%s" % (self.name)
