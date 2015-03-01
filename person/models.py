@@ -46,6 +46,11 @@ class Person(models.Model):
                                         blank=True,
                                         null=True,
                                 related_name="%(app_label)s_%(class)s_related")
+    nationality = models.ManyToManyField('Nationality',
+                                    default=None,
+                                    blank=True,
+                                    null=True,
+                            related_name="%(app_label)s_%(class)s_related")
 
     class Meta:
         abstract = True
@@ -76,7 +81,7 @@ class Participant(Person):
 
 class Language(models.Model):
 
-    name = models.CharField(u'Language Name', max_length=64)
+    name = models.CharField(u'Language', max_length=64)
     iso = models.CharField(u'ISO', max_length=3, primary_key=True)
 
     def __str__(self):
@@ -84,7 +89,15 @@ class Language(models.Model):
 
 class Hobbie(models.Model):
 
-    name = models.CharField(u'Hobbie Name', max_length=128)
+    name = models.CharField(u'Hobbie', max_length=128)
+
+    def __str__(self):
+        return u"%s" % (self.name)
+
+class Nationality(models.Model):
+
+    name = models.CharField(u'Nationality', max_length=64)
+    iso = models.CharField(u'ISO', max_length=3, primary_key=True)
 
     def __str__(self):
         return u"%s" % (self.name)
