@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        {% load staticfiles %}
+        <img src="{% static 'logo.png' %}" alt="My image"/>
+        <div id="content">
+            {% block content %}{% endblock %}
+        </div>
+    </body>
+</html>

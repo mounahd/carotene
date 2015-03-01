@@ -3,7 +3,7 @@ from django.template import RequestContext, loader
 from django.forms.models import modelformset_factory
 from django.shortcuts import render_to_response
 from person.models import Participant
-from person.forms import ParticipantForm
+from person.forms import ParticipantForm,MentorForm
 
 def index(request):
     participants_list = Participant.objects.all()
@@ -21,4 +21,14 @@ def create_participant(request):
     else:
         formset = ParticipantForm()
     return render_to_response("participants.html", {"form": formset})
+def create_mentor(request):
+    if request.method == 'POST':
+        formset = MentorForm(request.POST, request.FILES)
+        if formset.is_valid():
+            formset.save()
+            # do something.
+    else:
+        formset = MentorForm()
+    return render_to_response("mentors.html", {"form": formset})
+
         
