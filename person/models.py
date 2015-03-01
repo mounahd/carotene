@@ -7,22 +7,22 @@ PYTHON_PRACTICE_CHOICES = (('never',  _('Never')),
 
 DJANGO_PRACTICE_CHOICES = (('never',  _('Never')),
                            ('1year', _('<1Year')),
-                           ('more', _('>1year'))) 
+                           ('more', _('>1year')))
 
 OS_CHOICES = (('mac',  _('Mac')),
               ('linux', _('Linux')),
-              ('win', _('windows'))) 
+              ('win', _('windows')))
 
 ENGLISH_LEVEL_CHOICES = (('never',  _('Never')),
                          ('beginner', _('Beginner')),
-                         ('fluent', _('Fluent'))) 
+                         ('fluent', _('Fluent')))
 
 GENDER_CHOICES = (('women',  _('Women')),
                   ('man', _('Man')),
-                  ('other', _('Other'))) 
+                  ('other', _('Other')))
 PARTICIPANT_LEVEL_CHOICES = (('beginner',  _('Beginner')),
                              ('intermediate', _('Intermediate')),
-                             ('indifferent', _('Indifferent'))) 
+                             ('indifferent', _('Indifferent')))
 
 
 class Person(models.Model):
@@ -41,27 +41,34 @@ class Person(models.Model):
     class Meta:
         abstract = True
 
-        class Mentor(Person):
-            participant_level = models.CharField(u'participant level', 
-                                                 choices=PARTICIPANT_LEVEL_CHOICES, max_length=12)
-            def __str__(self):
-                return u"%s %s" % (self.first_name,self.last_name)
 
-            class Participant(Person):
-                python_practice_since = models.CharField(u'Python practice since',
-                                                         choices=PYTHON_PRACTICE_CHOICES,
-                                                         max_length=5)
-                django_practice_since = models.CharField(u'Django practice since',
-                                                         choices=DJANGO_PRACTICE_CHOICES,
-                                                         max_length=5) 
-                os = models.CharField(u'Operating System',choices=OS_CHOICES,
-                                      max_length=20)
-                def __str__(self):
-                    return u"%s %s" % (self.first_name,self.last_name)
-                Mentor = models.ForeignKey('Mentor', default=None, blank=True,
-                                           null=True,related_name="participants")
+class Mentor(Person):
+    participant_level = models.CharField(u'participant level',
+                                         choices=PARTICIPANT_LEVEL_CHOICES,
+                                         max_length=12)
 
-                class language(models.Model):
+    def __str__(self):
+        return u"%s %s" % (self.first_name, self.last_name)
 
-                    name = models.CharField(u'Language Name',max_length=64)
-                    iso = models.CharField(u'ISO',max_length=3)
+
+class Participant(Person):
+    python_practice_since = models.CharField(u'Python practice since',
+                                             choices=PYTHON_PRACTICE_CHOICES,
+                                             max_length=5)
+    django_practice_since = models.CharField(u'Django practice since',
+                                             choices=DJANGO_PRACTICE_CHOICES,
+                                             max_length=5)
+    os = models.CharField(u'Operating System', choices=OS_CHOICES,
+                          max_length=20)
+
+    Mentor = models.ForeignKey('Mentor', default=None, blank=True,
+                               null=True, related_name="participants")
+
+    def __str__(self):
+        return u"%s %s" % (self.first_name, self.last_name)
+
+
+class language(models.Model):
+
+    name = models.CharField(u'Language Name', max_length=64)
+    iso = models.CharField(u'ISO', max_length=3)
