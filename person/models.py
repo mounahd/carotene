@@ -81,7 +81,7 @@ class Participant(Person):
 
 class Language(models.Model):
 
-    name = models.CharField(u'Language', max_length=64)
+    name = models.CharField(u'Spoken languages', max_length=64)
     iso = models.CharField(u'ISO', max_length=3, primary_key=True)
 
     def __str__(self):
