@@ -12,6 +12,7 @@ def index(request):
             'participants_list': participants_list,
         })
     return HttpResponse(template.render(context))
+
 def create_participant(request):
     if request.method == 'POST':
         formset = ParticipantForm(request.POST, request.FILES)
@@ -21,6 +22,7 @@ def create_participant(request):
     else:
         formset = ParticipantForm()
     return render_to_response("participants.html", {"form": formset})
+
 def create_mentor(request):
     if request.method == 'POST':
         formset = MentorForm(request.POST, request.FILES)
@@ -30,5 +32,3 @@ def create_mentor(request):
     else:
         formset = MentorForm()
     return render_to_response("mentors.html", {"form": formset})
-
-        
