@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+	<h1>
+		{{ participant.first_name }} {{ participant.last_name }}
+	</h1>
+	<p><b>Email: </b>{{ participant.email }}</p>
+	<p><b>Gender: </b>{{ participant.gender }}</p>
+	<p><b>Birth date: </b>{{ participant.birth_date }}</p>
+	<p><b>Phone number: </b>{{ participant.phone_number }}</p>
+	<p><b>English level: </b>{{ participant.english_level }}</p>
+	<p><b>Practices Python since: </b>{{ participant.python_practice_since }}</p>
+	<p><b>Practices Django since: </b>{{ participant.django_practice_since }}</p>
+	<p><b>Operating Sytem: </b>{{ participant.os }}</p>
+	<p><b>Hobby(ies):</b></p>
+	<p><b>Mentor: </b>
+		{% if participant.Mentor != None %}
+			{{ participant.Mentor }}
+		{% else %}
+			No mentor yet.
+		{% endif %}
+	</p>
+	<ul>
+		{% for hobbie in participant.hobbie.all %}
+			<li>{{ hobbie }}</li>
+		{% endfor %}
+	</ul>
+	<p><b>Language(s) spoken:</b></p>
+	<ul>
+		{% for language in participant.language.all %}
+		<li>{{ language }}</li>
+		{% endfor %}
+	</ul>
+	<p><b>Nationality(ies):</b></p>
+	<ul>
+		{% for nationality in participant.nationality.all %}
+		<li>{{ nationality }}</li>
+		{% endfor %}
+	</ul>
+{% endblock %}

@@ -18,10 +18,14 @@ def create_participant(request):
         formset = ParticipantForm(request.POST, request.FILES)
         if formset.is_valid():
             formset.save()
-            # do something.
+            #redirect to participant informations
     else:
         formset = ParticipantForm()
     return render_to_response("participants.html", {"form": formset})
+
+def view_participant(request, id):
+    participant = Participant.objects.get(id=id)
+    return render(request, 'participant.html', {'participant': participant})
 
 def create_mentor(request):
     if request.method == 'POST':
