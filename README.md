@@ -1,4 +1,4 @@
-# Django Carrots
+# class Carotene(Django Carrots):
 
 Django Carrots is a three day programming workshop in Python. The scenario was created by Geek Girls Carrots and using on Creative Common licence by other organizations. 
 
