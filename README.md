@@ -4,9 +4,9 @@ Django Carrots is a three day programming workshop in Python. The scenario was c
 
 #Carotene
 
-Developped by participants of the last Django Carrots event in Paris, Carotene is an application for :
+Developped by participants of the last Django Carrots event in Paris, Carotene is an application to :
 
-- to apply as a participant for a Django Carrots session
-- to register as a mentor for this session
+- apply as a participant for a Django Carrots session
+- register as a mentor for this session
 - match participants and mentors
 - help the volunteers to organize the session
